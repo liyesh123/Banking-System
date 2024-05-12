@@ -1,0 +1,61 @@
+class BankAccount:
+    def __init__(self, name, account_number, balance=20000):
+        self.name = name
+        self.account_number = account_number
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"Amount {amount} deposited. Current balance is {self.balance}")
+
+    def withdraw(self, amount):
+        if self.balance >= amount:
+            self.balance -= amount
+            print(f"Amount {amount} withdrawn. Current balance is {self.balance}")
+        else:
+            print("Insufficient funds!")
+
+    def check_balance(self):
+        print(f"Current balance for account {self.account_number} is {self.balance}")
+
+
+def login():
+    username = "liyesh123"
+    password = "12345"
+    entered_username = input("Enter username: ")
+    entered_password = input("Enter password: ")
+    if entered_username == username and entered_password == password:
+        return True
+    else:
+        print("Incorrect username or password.")
+        return False
+
+
+def main():
+    if not login():
+        return
+    account = BankAccount("Liyesh Mani", "20265744201")
+    while True:
+        print("\nBanking Menu:")
+        print("1. Deposit")
+        print("2. Withdraw")
+        print("3. Check Balance")
+        print("4. Exit")
+        choice = input("Enter your choice: ")
+        if choice == '1':
+            amount = float(input("Enter amount to deposit: "))
+            account.deposit(amount)
+        elif choice == '2':
+            amount = float(input("Enter amount to withdraw: "))
+            account.withdraw(amount)
+        elif choice == '3':
+            account.check_balance()
+        elif choice == '4':
+            print("Thank you for banking with us!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
